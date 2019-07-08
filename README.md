@@ -20,7 +20,7 @@
 - Ustream Embed API: video player controls
 - Leaflet: JS map library
 - OpenStreetMap: map tiles
-- Terminator: daylight mapping
+- [Terminator](https://github.com/joergdietrich/Leaflet.Terminator): daylight mapping
 - Bootstrap: accordion menu styling
 
 ### Troubleshooting
