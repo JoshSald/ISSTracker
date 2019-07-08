@@ -1,0 +1,372 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  height: 100%;
+  width: 100%;
+  color: white;
+  background: #000;
+  scroll-behavior: smooth;
+}
+ul {
+  list-style: none;
+}
+hr {
+  background: white;
+  opacity: 0.1;
+}
+a {
+  color: #78a1bb;
+}
+.btn {
+  cursor: pointer;
+}
+.err-msg {
+  color: rgb(219, 1, 1);
+}
+.best-conditions {
+  color: rgb(0, 223, 0);
+}
+.bestof-week {
+  color: rgb(190, 223, 0);
+}
+.player-controls {
+  width: 5%;
+  height: 3%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 1%;
+  display: flex;
+  transition: 0.4s ease-in;
+  cursor: pointer;
+}
+#play-btn {
+  width: 46%;
+  opacity: 0.1;
+  transition: 0.2s ease-in;
+}
+#pause-btn {
+  width: 35%;
+  opacity: 0.1;
+  transition: 0.2s ease-in;
+}
+#play-btn:hover,
+#pause-btn:hover {
+  opacity: 1;
+}
+.bg-vid {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.bg-vid iframe {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-items: flex-start;
+}
+.flex-container {
+  /* margin: auto; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 0.625rem;
+}
+.dk-bg {
+  width: 35%;
+  padding: 3%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+.text {
+  color: #fff;
+  text-align: center;
+}
+.textbox {
+  display: inline-block;
+}
+#issMap {
+  opacity: 0.8;
+  height: 30vh;
+  width: 100%;
+  border-radius: 5px;
+  margin: auto;
+}
+.centerISScontrol {
+  padding: 5%;
+  background: #fff;
+  color: black;
+  border-radius: 5px;
+  opacity: 0.9;
+  width: 100%;
+}
+.pulse {
+  width: 100%;
+  animation: pulsate 1.5s ease-out;
+  -webkit-animation: pulsate 1.5s ease-out;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  opacity: 0;
+}
+.accordion {
+  border: none;
+}
+.iss-info {
+  text-align: center;
+}
+.iss-info h4 {
+  margin-bottom: 1.5rem;
+  color: #78a1bb;
+}
+.iss-info p {
+  margin-bottom: 2.5rem;
+}
+.btn {
+  color: white;
+}
+.btn:hover {
+  text-decoration: none;
+  color: white;
+}
+.card {
+  background: rgba(0, 0, 0, 0.7);
+  border: rgba(255, 255, 255, 0.2) 1px solid;
+  color: white;
+}
+.card-header {
+  cursor: pointer;
+  transition: 0.5s;
+  text-align: center;
+}
+.card-header:hover {
+  background-color: #545677;
+}
+.pis {
+  text-align: center;
+}
+
+.pis #crewimg {
+  width: 80%;
+  margin-bottom: 10%;
+}
+#issPasses li {
+  border: 1px white solid;
+  border-radius: 5px;
+  padding: 8%;
+  margin-bottom: 8%;
+  line-height: 0.5rem;
+}
+#astronautList {
+  margin: auto;
+  margin-top: 20%;
+  padding-inline-start: 0;
+}
+#astronautList h4 {
+  color: #78a1bb;
+}
+.astronaut-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.bio {
+  width: 85%;
+  margin: auto;
+}
+.flag {
+  width: 15% !important;
+  padding-right: 5%;
+}
+.astronaut-portrait {
+  width: 80%;
+  margin-bottom: 5%;
+}
+.mb-only {
+  display: none;
+}
+
+@keyframes pulsate {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* 4k onwards */
+@media screen and (min-width: 160rem) {
+  .container {
+    max-width: 95%;
+  }
+  #issPasses li {
+    width: 50%;
+    margin: auto;
+  }
+}
+/* /4k onwards */
+
+/* mobile and tablets */
+@media screen and (min-width: 20rem) and (max-width: 48rem) {
+  .body {
+    height: 100%;
+  }
+  .open {
+    position: fixed;
+    right: 0;
+    font-size: 30px;
+    float: right;
+    margin: 1rem 1rem 0.5rem 0;
+    cursor: pointer;
+    z-index: 10;
+  }
+  .nav {
+    width: 0%;
+    overflow-x: hidden;
+    height: 100vh;
+    z-index: 11;
+    position: fixed;
+    background-color: rgba(53, 50, 56, 0.9);
+    transition: 0.5s;
+    display: block;
+  }
+  .nav a {
+    clear: right;
+    color: white;
+    font-size: 22px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    padding: 1em 0;
+    transition: 0.3s;
+  }
+  .close {
+    float: right;
+    margin: 1em 1em 0 0;
+  }
+  .nav a:not(:first-child):hover {
+    background: #545677;
+  }
+  .container {
+    align-items: center;
+  }
+
+  .flex-container {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .dk-bg {
+    min-width: 80%;
+  }
+  .text {
+    margin: auto;
+    margin-bottom: 2rem;
+    padding-top: 25%;
+  }
+  .text h1 {
+    margin-bottom: 2rem;
+  }
+  .text .textbox {
+    max-width: 70%;
+  }
+  .text p {
+    display: inline-block;
+  }
+
+  #issMap {
+    height: 40vh;
+    max-width: 90%;
+  }
+
+  .bg-vid {
+    position: fixed;
+    height: 100%;
+    background: url("../img/space.jpg") no-repeat center center fixed;
+    background-size: cover;
+  }
+  .bg-vid iframe {
+    display: none;
+  }
+  .player-controls {
+    display: none;
+  }
+  .mb-only {
+    display: block;
+  }
+
+  .accordion {
+    padding-bottom: 5%;
+  }
+  #issPasses li {
+    line-height: normal;
+  }
+  .pis #crewimg {
+    width: 100%;
+  }
+  .flag {
+    width: 20%;
+  }
+  .astronaut-portrait {
+    width: 100%;
+  }
+  .bio {
+    width: 95%;
+  }
+  .mb-only {
+    display: block;
+  }
+  .livestream-info {
+    margin: 2.0625rem auto 2.0625rem auto;
+    padding: 3%;
+    max-width: 80%;
+    text-align: center;
+    border: 1px rgba(255, 255, 255, 0.3) solid;
+    border-radius: 5px;
+  }
+}
+/* /mobile and tablets */
+/* small screen mobiles (iphone 5 and below) */
+@media screen and (max-width: 20rem) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  #issMap {
+    height: 30vh;
+  }
+  .centerISScontrol {
+    opacity: 0.4;
+    background: #000;
+    color: white;
+  }
+  .dk-bg {
+    width: 75%;
+  }
+  .livestream-info {
+    max-width: 95%;
+  }
+}
+/* /small screen mobiles (iphone 5 and below) */

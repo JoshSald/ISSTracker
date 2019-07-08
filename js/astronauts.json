@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Oleg Kononenko",
+    "role": "Commander",
+    "img": "Kononenko.jpg",
+    "country": "russia",
+    "launch_date": "1545264000",
+    "bio": "<strong>Oleg Dmitriyevich Kononenko</strong> has flown to the International Space Station four times, as a flight engineer for Expedition 17, as a flight engineer on Expedition 30 and commander of Expedition 31, as a flight engineer on Expedition 44 and Expedition 45, and as commander of Expedition 58 and Expedition 59. <br><br> Kononenko accumulated over 533 days in orbit during his first three long duration flights to ISS."
+  },
+  {
+    "name": "David Saint-Jacques",
+    "role": "Flight Engineer 1",
+    "img": "David_Saint-Jacques_official_portrait.jpg",
+    "country": "canada",
+    "launch_date": "1545264000",
+    "bio": "<strong>David Saint-Jacques</strong> is an astrophysicist, engineer, and a physician. In December 2018 he launched to the International Space Station, as Flight Engineer on Expeditions 57, 58 and 59; he is scheduled to return to Earth on 24 June 2019."
+  },
+  {
+    "name": "Anne McClain",
+    "role": "Flight Engineer 2",
+    "img": "Anne_C._McClain_portrait.jpg",
+    "country": "united-states",
+    "launch_date": "1545264000",
+    "bio": "<strong>Anne Charlotte McClain</strong> is a lieutenant colonel in the U.S. Army, engineer and a NASA astronaut. Her call sign is \"Annimal.\" She is the Flight Engineer for Expedition 58/59 to the International Space Station."
+  },
+  {
+    "name": "Alexey Ovchinin",
+    "role": "Flight Engineer 3",
+    "img": "Alexeyovchinin.png",
+    "country": "russia",
+    "launch_date": "1552521600",
+    "bio": "<strong>Aleksey Nikolayevich Ovchinin</strong> is a Russian Air Force Major and cosmonaut, who was selected in 2006. Ovchinin made his first spaceflight in 2016, and was assigned as Commander of Soyuz MS-10 in 2018 on the way to the International Space Station to join Expedition 57, but the launch was aborted mid-flight due to a booster failure. <br><br> Ovchinin launched to the ISS again on 14 March 2019 with American astronauts Nick Hague and Christina Koch. The trio joined the Expedition 59 crew, along with Commander Oleg Kononenko and Flight Engineers David Saint-Jacques and Anne McClain. After the departure of Kononenko, Saint-Jacques and McClain in July 2019, Ovchinin will take command of the station for Expedition 60."
+  },
+  {
+    "name": "Nick Hague",
+    "role": "Flight Engineer 4",
+    "img": "800px-Tyler_N._Hague_official_portrait.jpg",
+    "country": "united-states",
+    "launch_date": "1552521600",
+    "bio": "<strong>Nick Hague</strong> is an American flight test engineer and a NASA astronaut of the class of 2013. Selected to be a flight engineer on the International Space Station, his first launch was on Soyuz MS-10, which aborted shortly after take-off on 11 October 2018. <br><br> His second launch, on 14 March 2019, was successful, taking him and his fellow Soyuz MS-12 crew members to join ISS Expedition 59/60"
+  },
+  {
+    "name": "Christina Koch",
+    "role": "Flight Engineer 5",
+    "img": "christinakoch.png",
+    "country": "united-states",
+    "launch_date": "1552521600",
+    "bio": "<strong>Christina Koch</strong> is an engineer and NASA astronaut of the class of 2013. She received Bachelor of Science degrees in Electrical Engineering and Physics, and a Master of Science in Electrical Engineering from North Carolina State University. She also did advanced study while working for the Goddard Space Flight Center. Just before becoming an astronaut, she served with the National Oceanic and Atmospheric Administration, as Station Chief for American Samoa. <br><br> On March 14, 2019, she launched to the International Space Station, as a Flight Engineer on Expedition 59, 60 and 61."
+  }
+]

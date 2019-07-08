@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      name="description"
+      content="Track the International Space Station whilst watching it over the earth"
+    />
+    <title>The ISS Tracker</title>
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- /Bootstrap -->
+    <!-- Map Styles -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+      integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+      crossorigin=""
+    ></script>
+    <!-- /Map Styles -->
+    <!-- User Styles -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- /User Styles -->
+  </head>
+  <body>
+    <!-- Player Controls -->
+    <div class="player-controls">
+      <img src="img/play-button.svg" alt="play" id="play-btn" />
+      <img src="img/round-pause-button.svg" alt="pause" id="pause-btn" />
+    </div>
+    <!-- /Player Controls -->
+    <div class="bg-vid">
+      <iframe
+        id="spaceViewer"
+        src="https://www.ustream.tv/embed/17074538?html5ui=0&autoplay=true&showtitle=false&controls=false&volume=0"
+        allowfullscreen
+        style="border: 0 none transparent;"
+        title="liveStream"
+      ></iframe>
+    </div>
+    <!-- Mobile Nav -->
+    <div class="mb-only">
+      <nav class="nav" id="nav">
+        <a href="javascript:void(0)" class="close" onclick="closeNav()"
+          >&times;</a
+        >
+        <a href="#" onclick="closeNav()" aria-label="Home">Home</a>
+        <a href="#spotTheIss" onclick="closeNav()">Spot the ISS</a>
+        <a href="#faq" onclick="closeNav()">FAQ</a>
+        <a href="#peopleInSpace" onclick="closeNav()">Who's in space?</a>
+        <a href="#livestreamInfo" onclick="closeNav()">Livestream</a>
+      </nav>
+
+      <span id="open" class="open" onclick="openNav()">&#9776;</span>
+    </div>
+    <!-- /Mobile Nav -->
+    <!-- Container -->
+    <div class="container">
+      <!-- Dark BG -->
+      <div class="dk-bg">
+        <!-- Text Info -->
+        <div class="text">
+          <h1>ISS TRACKER</h1>
+          <div class="textbox">
+            <p><strong>Longitude:</strong> <span id="lon"></span></p>
+            <p><strong>Latitude:</strong> <span id="lat"></span></p>
+          </div>
+          <div class="textbox">
+            <p><strong>Altitude:</strong> <span id="alt"></span> km</p>
+            <p><strong>Speed:</strong> <span id="spd"></span> km/h</p>
+          </div>
+        </div>
+        <!-- /Text Info -->
+
+        <!-- Map-->
+        <div class="flex-container">
+          <div id="issMap" class="map"></div>
+        </div>
+        <!-- /Map -->
+
+        <!-- ACCORDION -->
+        <div class="accordion" id="accordionInfo">
+          <!-- Card 1 -->
+          <div class="card">
+            <!-- Header -->
+            <div
+              class="card-header"
+              id="spotTheIss"
+              data-toggle="collapse"
+              data-target="#collapseOne"
+            >
+              <h2 class="mb-0">
+                <button
+                  class="btn btn-link"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="collapseOne"
+                >
+                  Spot the ISS above you
+                </button>
+              </h2>
+            </div>
+            <!-- /Header -->
+
+            <!-- Body -->
+            <div
+              id="collapseOne"
+              aria-labelledby="spotTheIss"
+              data-parent="#accordionInfo"
+              data-toggle="collapse"
+              data-target="#collapseOne"
+              class="collapse"
+            >
+              <div class="card-body">
+                <!-- Number of Passes over user -->
+                <div id="issPasses">
+                  <p>
+                    We will require your current location to get ISS fly over
+                    data over your city. <br /><br />
+                    If you agree to allow us to access to your current location,
+                    please click the button below.
+                  </p>
+                  <div
+                    class="btn btn-primary userloc-btn"
+                    onclick="getPassTimes()"
+                  >
+                    Click here to accept
+                  </div>
+                </div>
+                <!-- /Number of Passes over user -->
+              </div>
+            </div>
+            <!-- /Body -->
+          </div>
+          <!-- /Card 1 -->
+
+          <!-- Card 2 -->
+          <div class="card">
+            <!-- Header -->
+            <div
+              class="card-header"
+              id="faq"
+              data-toggle="collapse"
+              data-target="#collapseTwo"
+            >
+              <h2 class="mb-0">
+                <button
+                  class="btn btn-link collapsed"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  FAQ
+                </button>
+              </h2>
+            </div>
+            <!-- /Header -->
+
+            <!-- Body -->
+            <div
+              id="collapseTwo"
+              class="collapse"
+              aria-labelledby="faq"
+              data-parent="#accordionInfo"
+              data-toggle="collapse"
+              data-target="#collapseTwo"
+            >
+              <div class="card-body iss-info">
+                <!-- iss FAQ -->
+                <h4>What is the International Space Station?</h4>
+                <p>
+                  The International Space Station is a large spacecraft. It
+                  orbits around Earth. It is a home where astronauts live.
+                  <br /><br />
+
+                  The space station is also a science lab. Many countries worked
+                  together to build it. They also work together to use it.
+                  <br /><br />
+
+                  The space station is made of many pieces. The pieces were put
+                  together in space by astronauts. The space station's orbit is
+                  approximately 250 miles above Earth. NASA uses the station to
+                  learn about living and working in space. These lessons will
+                  help NASA explore space.
+                </p>
+
+                <h4>How Old Is the Space Station?</h4>
+                <p>
+                  The first piece of the International Space Station was
+                  launched in 1998. A Russian rocket launched that piece. After
+                  that, more pieces were added. Two years later, the station was
+                  ready for people. The first crew arrived on November 2, 2000.
+                  People have lived on the space station ever since. Over time
+                  more pieces have been added. NASA and its partners around the
+                  world finished the space station in 2011.
+                </p>
+
+                <h4>How Big Is the Space Station?</h4>
+                <p>
+                  The space station is as big inside as a house with five
+                  bedrooms. It has two bathrooms, a gymnasium and a big bay
+                  window. Six people are able to live there. It weighs almost a
+                  million pounds. It is big enough to cover a football field
+                  including the end zones. It has science labs from the United
+                  States, Russia, Japan and Europe.
+                </p>
+
+                <h4>What Are the Parts of the Space Station?</h4>
+                <p>
+                  The space station has many parts. The parts are called
+                  modules. The first modules had parts needed to make the space
+                  station work. Astronauts also lived in those modules. Modules
+                  called "nodes" connect parts of the station to each other.
+                  Labs on the space station let astronauts do research. <br />
+                  <br />
+
+                  On the sides of the space station are solar arrays. These
+                  arrays collect energy from the sun. They turn sunlight into
+                  electricity. Robot arms are attached outside. The robot arms
+                  helped to build the space station. They also can move
+                  astronauts around outside and control science experiments.
+                  <br />
+                  <br />
+
+                  Airlocks on the space station are like doors. Astronauts use
+                  them to go outside on spacewalks. <br />
+                  <br />
+
+                  Docking ports are like doors, too. The ports allow visiting
+                  spacecraft to connect to the space station. New crews and
+                  visitors enter the station through the docking ports.
+                  Astronauts fly to the space station on the Russian Soyuz. The
+                  crew members use the ports to move supplies onto the station.
+                </p>
+
+                <h4>Why Is the Space Station Important?</h4>
+                <p>
+                  The space station is a home in orbit. People have lived in
+                  space every day since the year 2000. The space station's labs
+                  are where crew members do research. This research could not be
+                  done on Earth.
+                  <br />
+                  <br />
+
+                  Scientists study what happens to people when they live in
+                  space. NASA has learned how to keep a spacecraft working for a
+                  long time. These lessons will be important in the future.
+                  <br />
+                  <br />
+
+                  NASA has a plan to send humans deeper into space than ever
+                  before. The space station is one of the first steps. NASA will
+                  use lessons from the space station to get astronauts ready for
+                  the journey ahead.
+                </p>
+                <!-- /ISS FAQ -->
+              </div>
+            </div>
+            <!-- /Body -->
+          </div>
+          <!-- /Card 2 -->
+
+          <!-- Card 3 -->
+          <div class="card">
+            <!-- Header -->
+            <div
+              class="card-header"
+              id="peopleInSpace"
+              data-toggle="collapse"
+              data-target="#collapseThree"
+            >
+              <h2 class="mb-0">
+                <button
+                  class="btn btn-link collapsed"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  Who's in Space right now?
+                </button>
+              </h2>
+            </div>
+            <!-- /Header -->
+
+            <!-- Body -->
+            <div
+              id="collapseThree"
+              class="collapse"
+              aria-labelledby="peopleInSpace"
+              data-parent="#accordionInfo"
+              data-toggle="collapse"
+              data-target="#collapseThree"
+            >
+              <div class="card-body pis">
+                <!-- People in Space -->
+                <img
+                  id="crewimg"
+                  src="img/expedition59crew.jpg"
+                  alt="expidition59 crew portrait"
+                />
+                <p>
+                  <strong>EXPEDITION 59</strong> began in March 2019 and ends in
+                  June 2019. This expedition will include research
+                  investigations and technology demonstrations not possible on
+                  Earth to advance scientific knowledge of Earth, space,
+                  physical and biological sciences.
+                </p>
+                <p>
+                  There are currently <span id="noa">a few</span> astronauts on
+                  the space station - some of whom were part of
+                  <strong>EXPEDITION 58</strong> which launched in December
+                  2018.
+                </p>
+                <ul id="astronautList"></ul>
+                <!-- /People in Space -->
+              </div>
+            </div>
+            <!-- /Body -->
+          </div>
+          <!-- /Card 3 -->
+        </div>
+        <!-- /Accordion -->
+
+        <!-- Mobile Only container -->
+        <div id="livestreamInfo" class="mb-only livestream-info">
+          <h4>Watch the Live Stream</h4>
+          <p>
+            Watching the livestream simultaneously with the map is unfortunately
+            only available on Desktop, but you can join live on
+            <a href="https://www.youtube.com/watch?v=VMfcoT_lO80">Youtube</a>
+            or on
+            <a href="http://www.ustream.tv/channel/iss-hdev-payload">Ustream</a>
+            to join in on the action!
+          </p>
+        </div>
+        <!-- /Mobile Only container -->
+      </div>
+      <!-- /Dark BG -->
+    </div>
+    <!-- /container -->
+
+    <!--======= 
+        SCRIPTS 
+      =========-->
+
+    <!-- Map Scripts -->
+    <!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet"></script>
+    <!-- /Leaflet -->
+    <!-- Terminator(day/night map) -->
+    <script src="js/daylightmap.js"></script>
+    <!-- /Terminator(day/night map) -->
+    <!-- User Map Script -->
+    <script src="js/map.js"></script>
+    <!-- /User Map Script -->
+    <!-- /Map Scripts -->
+    <!-- ISS Tracking -->
+    <script src="js/isstracker.js"></script>
+    <!-- /ISS Tracking -->
+    <!-- Video API -->
+    <script src="js/streamapi.js"></script>
+    <!-- /Video API -->
+    <!-- USER SCRIPTS -->
+    <script src="js/app.js"></script>
+    <!-- /USER SCRIPTS -->
+    <!-- Bootstrap Scripts -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- /Bootstrap Scripts -->
+  </body>
+</html>
