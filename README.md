@@ -1,6 +1,6 @@
 ## What is The ISS Tracker
 
-**The ISS tracker** was built as an educational tool for children (and adults) who are interested in the the International Space Station and want to be able to spot it in the night sky. It is purposefully designed to be minimal to keep on screen distractions at a minimum.
+**The ISS tracker** was built as an educational tool for children (and adults) who are interested in the the International Space Station and want to be able to spot it in the night sky. It is purposefully designed to be minimal to keep on screen distractions at a minimum. [View it live here](https://tracktheiss.netlify.com/)
 
 ### Features
 
